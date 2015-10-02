@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Jose Miguel Durá Sirvent
+ * @author Jose Miguel Durá Sirvent y Agustín Erkiletlian Battista
  */
 public class Multiusosv0 extends Application {
     @Override
