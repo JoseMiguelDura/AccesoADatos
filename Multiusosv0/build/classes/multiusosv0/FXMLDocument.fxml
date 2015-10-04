@@ -36,6 +36,7 @@
             <Button fx:id="bSiguiente" layoutX="568.0" layoutY="393.0" mnemonicParsing="false" text="Siguiente" />
             <Button fx:id="bNuevo" layoutX="212.0" layoutY="393.0" mnemonicParsing="false" onAction="#clickEditar" text="Nuevo" />
             <Button fx:id="bGuardar" layoutX="102.0" layoutY="393.0" mnemonicParsing="false" text="Guardar" />
+            <Label fx:id="lSoftware" layoutX="325.0" layoutY="54.0" text="Software:" />
          </children>
       </Pane>
    </children>

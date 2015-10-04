@@ -87,6 +87,7 @@ public class FXMLDocumentController implements Initializable {
         tRequisitos.setText("");
         tAlternativa.setText("");
         setEditar(true);
+        bGuardar.setDisable(false);
     }
     
     private void setEditar(boolean estado)
@@ -97,6 +98,27 @@ public class FXMLDocumentController implements Initializable {
         tPrecio.setEditable(estado);
         tRequisitos.setEditable(estado);
         tAlternativa.setEditable(estado);
+    }
+    
+    public void guardar()
+    {
+        if(numeroSoftware>miModelo.getSize())
+        {
+            miModelo.Anyadir(
+                    new Software(tNombre.getText(),tDescripcion.getText(),tLicencia.getText(),
+                            Double.parseDouble(tPrecio.getText()),
+                            tRequisitos.getText(),tAlternativa.getText()));
+        }
+        else
+        {
+            Software aux=miModelo.getSoftware(numeroSoftware);
+            aux.setNombre(tNombre.getText());
+            aux.setDescripcion(tDescripcion.getText());
+            aux.setLicencia(tLicencia.getText());
+            aux.setPrecio(Double.parseDouble(tPrecio.getText()));
+            aux.setRequisitos(tRequisitos.getText());
+            aux.setAlternativas(tAlternativa.getText());
+        }
     }
     
     @Override
@@ -110,6 +132,7 @@ public class FXMLDocumentController implements Initializable {
         setEditar(false);
         numeroSoftware=0;
         lSoftware.setText("Software: "+numeroSoftware);
+        bGuardar.setDisable(true);
     }    
 
     

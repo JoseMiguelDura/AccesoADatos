@@ -41,7 +41,8 @@ public class ModeloMultiusos {
         this.nombreFichero=nombreFichero;
         //TODO
     }
-    private void Anyadir(Software miSoft)
+    
+    public void Anyadir(Software miSoft)
     {
         miLista.add(miSoft);
     }
