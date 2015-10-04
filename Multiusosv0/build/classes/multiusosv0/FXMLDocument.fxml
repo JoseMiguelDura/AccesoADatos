@@ -12,7 +12,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Archivo">
                   <items>
-                    <MenuItem fx:id="nuevoArchivoID" mnemonicParsing="false" text="Nuevo" />
+                    <MenuItem fx:id="mNuevoArchivo" mnemonicParsing="false" onAction="#clickNuevo" text="Nuevo" />
                         <MenuItem fx:id="abrirArchivoID" mnemonicParsing="false" text="Abrir" />
                         <MenuItem fx:id="guardarArchivoID" mnemonicParsing="false" text="Guardar" />
                         <MenuItem fx:id="cerrarArchivoID" mnemonicParsing="false" text="Cerrar" />
@@ -32,9 +32,10 @@
             <Label fx:id="labelRequisitos" layoutX="235.0" layoutY="271.0" text="Requisitos:" />
             <TextField fx:id="tAlternativa" layoutX="310.0" layoutY="300" prefHeight="33.0" prefWidth="222.0" />
             <Label fx:id="labelAlternativas" layoutX="235.0" layoutY="311.0" text="Alternativa:" />
-            <Button fx:id="bAnterior" layoutX="333.0" layoutY="393.0" mnemonicParsing="false" text="Anterior" />
-            <Button fx:id="bSiguiente" layoutX="482.0" layoutY="393.0" mnemonicParsing="false" text="Siguiente" />
-            <Button fx:id="bEditar" layoutX="142.0" layoutY="393.0" mnemonicParsing="false" onAction="#clickEditar" text="Editar" />
+            <Button fx:id="bAnterior" layoutX="445.0" layoutY="393.0" mnemonicParsing="false" text="Anterior" />
+            <Button fx:id="bSiguiente" layoutX="568.0" layoutY="393.0" mnemonicParsing="false" text="Siguiente" />
+            <Button fx:id="bNuevo" layoutX="212.0" layoutY="393.0" mnemonicParsing="false" onAction="#clickEditar" text="Nuevo" />
+            <Button fx:id="bGuardar" layoutX="102.0" layoutY="393.0" mnemonicParsing="false" text="Guardar" />
          </children>
       </Pane>
    </children>

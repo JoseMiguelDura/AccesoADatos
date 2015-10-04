@@ -23,8 +23,6 @@ import javafx.scene.layout.Pane;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private MenuItem nuevoArchivoID;
-    @FXML
     private MenuItem abrirArchivoID;
     @FXML
     private MenuItem guardarArchivoID;
@@ -43,7 +41,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label labelAlternativas;
     @FXML
-    private Button bEditar;
+    private Button bGuardar;
     @FXML
     private Button bAnterior;
     @FXML
@@ -62,6 +60,14 @@ public class FXMLDocumentController implements Initializable {
     private TextField tRequisitos;
     @FXML
     private TextField tAlternativa;
+    @FXML
+    private MenuItem mNuevoArchivo;
+    @FXML
+    private Button bNuevo;
+    @FXML
+    private Label lSoftware;
+    private int numeroSoftware;
+    private ModeloMultiusos miModelo;
     
     private void handleButtonAction(ActionEvent event) {
     }
@@ -71,11 +77,40 @@ public class FXMLDocumentController implements Initializable {
     {
     }
     
+    @FXML
+    private void clickNuevo()
+    {
+        tDescripcion.setText("");
+        tNombre.setText("");
+        tLicencia.setText("");
+        tPrecio.setText("");
+        tRequisitos.setText("");
+        tAlternativa.setText("");
+        setEditar(true);
+    }
+    
+    private void setEditar(boolean estado)
+    {
+        tDescripcion.setEditable(estado);
+        tNombre.setEditable(estado);
+        tLicencia.setEditable(estado);
+        tPrecio.setEditable(estado);
+        tRequisitos.setEditable(estado);
+        tAlternativa.setEditable(estado);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tDescripcion.setText("Necesario crear archivo primero");
         tNombre.setText("Necesario crear archivo primero");
-        
+        tLicencia.setText("Necesario crear archivo primero");
+        tPrecio.setText("Necesario crear archivo primero");
+        tRequisitos.setText("Necesario crear archivo primero");
+        tAlternativa.setText("Necesario crear archivo primero");
+        setEditar(false);
+        numeroSoftware=0;
+        lSoftware.setText("Software: "+numeroSoftware);
     }    
+
     
 }
