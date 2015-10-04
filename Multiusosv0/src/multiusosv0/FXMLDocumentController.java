@@ -10,7 +10,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 /**
  *
@@ -19,17 +23,59 @@ import javafx.scene.control.Label;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Label label;
+    private MenuItem nuevoArchivoID;
+    @FXML
+    private MenuItem abrirArchivoID;
+    @FXML
+    private MenuItem guardarArchivoID;
+    @FXML
+    private MenuItem cerrarArchivoID;
+    @FXML
+    private Label labelNombre;
+    @FXML
+    private Label labelDescripcion;
+    @FXML
+    private Label labelLicencia;
+    @FXML
+    private Label labelPrecio;
+    @FXML
+    private Label labelRequisitos;
+    @FXML
+    private Label labelAlternativas;
+    @FXML
+    private Button bEditar;
+    @FXML
+    private Button bAnterior;
+    @FXML
+    private Button bSiguiente;
+    @FXML
+    private Pane paneGlobal;
+    @FXML
+    private TextField tNombre;
+    @FXML
+    private TextField tDescripcion;
+    @FXML
+    private TextField tLicencia;
+    @FXML
+    private TextField tPrecio;
+    @FXML
+    private TextField tRequisitos;
+    @FXML
+    private TextField tAlternativa;
+    
+    private void handleButtonAction(ActionEvent event) {
+    }
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private void clickEditar()
+    {
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        tDescripcion.setText("Necesario crear archivo primero");
+        tNombre.setText("Necesario crear archivo primero");
+        
     }    
     
 }
