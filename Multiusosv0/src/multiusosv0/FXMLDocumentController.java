@@ -13,7 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 
 /**
@@ -68,26 +70,47 @@ public class FXMLDocumentController implements Initializable {
     private Label lSoftware;
     private int numeroSoftware;
     private ModeloMultiusos miModelo;
+    @FXML
+    private Pane paneNew;
+    private ToggleGroup miTG;
+    @FXML
+    private RadioButton tipoBinario;
+    @FXML
+    private RadioButton tipoPlano;
+    private String nombreFichero;
+    @FXML
+    private Button botonNuevo;
+    @FXML
+    private TextField tfNombreFichero;
     
     private void handleButtonAction(ActionEvent event) {
     }
     
     @FXML
-    private void clickEditar()
+    private void clickNuevo()
     {
+        paneNew.setVisible(true);
     }
     
     @FXML
-    private void clickNuevo()
+    private void nuevoSoftware()
     {
-        tDescripcion.setText("");
         tNombre.setText("");
+        tDescripcion.setText("");
         tLicencia.setText("");
         tPrecio.setText("");
         tRequisitos.setText("");
         tAlternativa.setText("");
-        setEditar(true);
-        bGuardar.setDisable(false);
+        lSoftware.setText(nombreFichero + "     " + numeroSoftware + "/" + (int)(miModelo.getSize()+1));
+    }
+    
+    @FXML
+    private void nuevoFichero()
+    {
+        nombreFichero = tfNombreFichero.getText();
+        paneNew.setVisible(false);
+        paneGlobal.setVisible(true);
+        lSoftware.setText(nombreFichero + "     " + numeroSoftware + "/" + (int)(miModelo.getSize()+1));
     }
     
     private void setEditar(boolean estado)
@@ -100,9 +123,10 @@ public class FXMLDocumentController implements Initializable {
         tAlternativa.setEditable(estado);
     }
     
+    @FXML
     public void guardar()
     {
-        if(numeroSoftware>miModelo.getSize())
+        if(numeroSoftware>=miModelo.getSize())
         {
             miModelo.Anyadir(
                     new Software(tNombre.getText(),tDescripcion.getText(),tLicencia.getText(),
@@ -123,16 +147,15 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        tDescripcion.setText("Necesario crear archivo primero");
-        tNombre.setText("Necesario crear archivo primero");
-        tLicencia.setText("Necesario crear archivo primero");
-        tPrecio.setText("Necesario crear archivo primero");
-        tRequisitos.setText("Necesario crear archivo primero");
-        tAlternativa.setText("Necesario crear archivo primero");
-        setEditar(false);
-        numeroSoftware=0;
-        lSoftware.setText("Software: "+numeroSoftware);
-        bGuardar.setDisable(true);
+        numeroSoftware = 1;
+        miTG=new ToggleGroup();
+        tipoPlano.setToggleGroup(miTG);
+        tipoBinario.setToggleGroup(miTG);
+        miTG.selectToggle(tipoBinario);
+        paneGlobal.setVisible(false);
+        paneNew.setVisible(false);
+        miModelo=new ModeloMultiusos();
+        
     }    
 
     
