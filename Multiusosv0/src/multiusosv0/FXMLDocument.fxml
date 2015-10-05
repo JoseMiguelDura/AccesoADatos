@@ -42,7 +42,7 @@
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
               <MenuItem fx:id="mNuevoArchivo" mnemonicParsing="false" onAction="#clickNuevo" text="Nuevo" />
-                  <MenuItem fx:id="abrirArchivoID" mnemonicParsing="false" text="Abrir" />
+                  <MenuItem fx:id="abrirArchivoID" mnemonicParsing="false" onAction="#abrirArchivo" text="Abrir" />
                   <MenuItem fx:id="guardarArchivoID" mnemonicParsing="false" onAction="#guardarArchivo" text="Guardar" />
                   <MenuItem fx:id="cerrarArchivoID" mnemonicParsing="false" text="Cerrar" />
             </items>
