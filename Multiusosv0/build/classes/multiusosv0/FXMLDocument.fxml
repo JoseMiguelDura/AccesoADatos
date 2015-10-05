@@ -42,12 +42,19 @@
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
               <MenuItem fx:id="mNuevoArchivo" mnemonicParsing="false" onAction="#clickNuevo" text="Nuevo" />
-                  <MenuItem fx:id="abrirArchivoID" mnemonicParsing="false" text="Abrir" />
+                  <MenuItem fx:id="abrirArchivoID" mnemonicParsing="false" onAction="#abrirPane" text="Abrir" />
                   <MenuItem fx:id="guardarArchivoID" mnemonicParsing="false" onAction="#guardarArchivo" text="Guardar" />
-                  <MenuItem fx:id="cerrarArchivoID" mnemonicParsing="false" text="Cerrar" />
+                  <MenuItem fx:id="cerrarArchivoID" mnemonicParsing="false" onAction="#cerrarArchivo" text="Cerrar" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
+      <Pane fx:id="paneAbrir" layoutX="8.0" layoutY="23.0" prefHeight="296.0" prefWidth="700.0">
+         <children>
+            <Label layoutX="137.0" layoutY="207.0" text="Nombre fichero:" />
+            <Button fx:id="bAbrirArchivo" layoutX="534.0" layoutY="203.0" mnemonicParsing="false" onAction="#abrirArchivo" text="Abrir" />
+            <TextField fx:id="nombreFicheroAbrir" layoutX="223.0" layoutY="203.0" prefHeight="25.0" prefWidth="296.0" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

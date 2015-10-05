@@ -87,6 +87,12 @@ public class FXMLDocumentController implements Initializable {
     private TextField tfNombreFichero;
     @FXML
     private MenuBar panelArchivoID;
+    @FXML
+    private Pane paneAbrir;
+    @FXML
+    private Button bAbrirArchivo;
+    @FXML
+    private TextField nombreFicheroAbrir;
     
     private void handleButtonAction(ActionEvent event) {
     }
@@ -98,6 +104,7 @@ public class FXMLDocumentController implements Initializable {
         paneGlobal.setVisible(false);
         numeroSoftware=0;
         paneNew.setVisible(true);
+        paneAbrir.setVisible(false);
     }
     
     @FXML
@@ -160,7 +167,22 @@ public class FXMLDocumentController implements Initializable {
             mostrarSoftware(actual);
         }
     }
-   
+    
+    @FXML
+    private void abrirArchivo()
+    {
+        System.out.println(nombreFicheroAbrir.getText());
+        miModelo.cargar(nombreFicheroAbrir.getText());
+        paneGlobal.setVisible(true);
+        paneAbrir.setVisible(false);
+    }
+    
+    @FXML
+    private void abrirPane()
+    {
+        paneAbrir.setVisible(true);
+    }
+    
     private void mostrarSoftware(Software actual)
     {
         tNombre.setText(actual.getNombre());
@@ -185,7 +207,13 @@ public class FXMLDocumentController implements Initializable {
             mostrarSoftware(actual);
         }
     }
-    
+    @FXML
+    public void cerrarArchivo()
+    {
+        paneGlobal.setVisible(false);
+        paneNew.setVisible(false);
+        paneAbrir.setVisible(false);
+    }
     @FXML
     public void guardar()
     {
@@ -227,9 +255,11 @@ public class FXMLDocumentController implements Initializable {
         miTG.selectToggle(tipoBinario);
         paneGlobal.setVisible(false);
         paneNew.setVisible(false);
+        paneAbrir.setVisible(false);
         miModelo=new ModeloMultiusos();
         bGuardar.setVisible(false);
     }    
+
 
     
 }
