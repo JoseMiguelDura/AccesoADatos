@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -49,6 +50,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button bSiguiente;
     @FXML
+    private Button bEditar;
+    @FXML
     private Pane paneGlobal;
     @FXML
     private TextField tNombre;
@@ -82,6 +85,8 @@ public class FXMLDocumentController implements Initializable {
     private Button botonNuevo;
     @FXML
     private TextField tfNombreFichero;
+    @FXML
+    private MenuBar panelArchivoID;
     
     private void handleButtonAction(ActionEvent event) {
     }
@@ -93,15 +98,27 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void clickEditar()
+    {
+        bGuardar.setVisible(true);
+        setEditar(true);
+        bEditar.setVisible(false);
+    }
+    
+    @FXML
     private void nuevoSoftware()
     {
+        setEditar(true);
+        bEditar.setVisible(false);
+        bGuardar.setVisible(true);
         tNombre.setText("");
         tDescripcion.setText("");
         tLicencia.setText("");
         tPrecio.setText("");
         tRequisitos.setText("");
         tAlternativa.setText("");
-        lSoftware.setText(nombreFichero + "     " + numeroSoftware + "/" + (int)(miModelo.getSize()+1));
+        numeroSoftware=miModelo.getSize();
+        lSoftware.setText(nombreFichero + "     " + (numeroSoftware+1)+ "/" +(miModelo.getSize()+1));
     }
     
     @FXML
@@ -110,7 +127,10 @@ public class FXMLDocumentController implements Initializable {
         nombreFichero = tfNombreFichero.getText();
         paneNew.setVisible(false);
         paneGlobal.setVisible(true);
-        lSoftware.setText(nombreFichero + "     " + numeroSoftware + "/" + (int)(miModelo.getSize()+1));
+        lSoftware.setText(nombreFichero + "     " + (int)(numeroSoftware+1) + "/" + (int)(miModelo.getSize()+1));
+        setEditar(true);
+        bGuardar.setVisible(true);
+        bEditar.setVisible(false);
     }
     
     private void setEditar(boolean estado)
@@ -121,6 +141,46 @@ public class FXMLDocumentController implements Initializable {
         tPrecio.setEditable(estado);
         tRequisitos.setEditable(estado);
         tAlternativa.setEditable(estado);
+    }
+    
+    @FXML
+    public void clickAnterior()
+    {
+        setEditar(false);
+        bGuardar.setVisible(false);
+        bEditar.setVisible(true);
+        if(numeroSoftware>0)
+        {
+            numeroSoftware--;
+            lSoftware.setText(nombreFichero + "     " + (numeroSoftware+1)+ "/" +(miModelo.getSize()));
+            Software actual=miModelo.getSoftware(numeroSoftware);
+            mostrarSoftware(actual);
+        }
+    }
+   
+    private void mostrarSoftware(Software actual)
+    {
+        tNombre.setText(actual.getNombre());
+        tDescripcion.setText(actual.getDescripcion());
+        tLicencia.setText(actual.getLicencia());
+        tPrecio.setText(String.valueOf(actual.getPrecio()));
+        tRequisitos.setText(actual.getRequisitos());
+        tAlternativa.setText(actual.getAlternativas());
+    }
+    @FXML
+    public void clickSiguiente()
+    {
+        setEditar(false);
+        bGuardar.setVisible(false);
+        bEditar.setVisible(true);
+        
+        if(numeroSoftware<(miModelo.getSize()-1))
+        {
+            numeroSoftware++;
+            lSoftware.setText(nombreFichero + "     " + (numeroSoftware+1)+ "/" +(miModelo.getSize()));
+            Software actual=miModelo.getSoftware(numeroSoftware);
+            mostrarSoftware(actual);
+        }
     }
     
     @FXML
@@ -143,11 +203,14 @@ public class FXMLDocumentController implements Initializable {
             aux.setRequisitos(tRequisitos.getText());
             aux.setAlternativas(tAlternativa.getText());
         }
+        setEditar(false);
+        bGuardar.setVisible(false);
+        bEditar.setVisible(true);
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        numeroSoftware = 1;
+        numeroSoftware = 0;
         miTG=new ToggleGroup();
         tipoPlano.setToggleGroup(miTG);
         tipoBinario.setToggleGroup(miTG);
@@ -155,7 +218,7 @@ public class FXMLDocumentController implements Initializable {
         paneGlobal.setVisible(false);
         paneNew.setVisible(false);
         miModelo=new ModeloMultiusos();
-        
+        bGuardar.setVisible(false);
     }    
 
     
