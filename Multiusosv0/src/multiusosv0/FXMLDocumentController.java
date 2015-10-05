@@ -94,6 +94,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void clickNuevo()
     {
+        miModelo=new ModeloMultiusos();
+        paneGlobal.setVisible(false);
+        numeroSoftware=0;
         paneNew.setVisible(true);
     }
     
@@ -206,6 +209,13 @@ public class FXMLDocumentController implements Initializable {
         setEditar(false);
         bGuardar.setVisible(false);
         bEditar.setVisible(true);
+    }
+    
+    @FXML
+    private void guardarArchivo()
+    {
+        String tipo=tipoPlano.isSelected()?"PLANO":"BINARIO";
+        miModelo.guardar(nombreFichero, tipo);
     }
     
     @Override

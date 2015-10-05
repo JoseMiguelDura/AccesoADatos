@@ -5,9 +5,12 @@
  */
 package multiusosv0;
 
+import java.io.BufferedWriter;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +40,12 @@ public class ModeloMultiusos {
         return miLista.size();
     }
     
-    public void Cargar()
+    public void cargar()
     {
       //TODO   
     }
     
-    public void Guardar(String nombreFichero,String tipoFichero)
+    public void guardar(String nombreFichero,String tipoFichero)
     {
         this.nombreFichero=nombreFichero;
         if(tipoFichero.equals("BINARIO"))
@@ -86,7 +89,36 @@ public class ModeloMultiusos {
         }
         else
         {
-            
+                FileWriter fw = null;
+            try {
+                fw = new FileWriter(new File(nombreFichero));
+                BufferedWriter bw = new BufferedWriter(fw);
+                for(int i=0;i<miLista.size();i++)
+                {
+                    Software aux=miLista.get(i);
+                    bw.write(aux.getNombre());
+                    bw.newLine();
+                    bw.write(aux.getDescripcion());
+                    bw.newLine();
+                    bw.write(aux.getLicencia());
+                    bw.newLine();
+                    bw.write(String.valueOf(aux.getPrecio()));
+                    bw.newLine();
+                    bw.write(aux.getRequisitos());
+                    bw.newLine();
+                    bw.write(aux.getAlternativas());
+                    bw.newLine();
+                }
+                bw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ModeloMultiusos.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    fw.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(ModeloMultiusos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }
     
